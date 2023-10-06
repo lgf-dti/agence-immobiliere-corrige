@@ -15,6 +15,7 @@ public class BienImmobilier {
         this.ville = ville;
         this.codePostal = codePostal;
         this.vendeur = vendeur;
+        vendeur.ajouterBienImmobilierEnGestion(this);
         pieces = new ArrayList<Piece>();
     }
     public double surfaceHabitable(){

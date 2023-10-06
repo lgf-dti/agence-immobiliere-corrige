@@ -14,6 +14,7 @@ public class Annonce {
         this.titre = titre;
         this.prixM2Habitable = prixM2Habitable;
         this.logement = logement;
+        this.logement.setAnnonce(this);
     }
     public double prix(){
         double resultat = 0;
