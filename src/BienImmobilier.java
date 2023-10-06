@@ -20,7 +20,7 @@ public class BienImmobilier {
     public double surfaceHabitable(){
         double resultat = 0;
         for(Piece unePiece : pieces){
-            if(unePiece.getTypePiece().isSurfaceHabitable())
+            if(unePiece.isSurfaceHabitable() == true)
             resultat += unePiece.surface();
         }
         return resultat;
@@ -36,6 +36,7 @@ public class BienImmobilier {
     public void ajouterPiece(Piece piece){
         pieces.add(piece);
     }
+
     public Vendeur getVendeur() {
         return vendeur;
     }   

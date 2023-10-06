@@ -30,4 +30,11 @@ public class Annonce {
         "\nContact  : " + logement.getVendeur().toString() +"\n";
     }
 
+    public double commission(){
+        double resultat = 0;
+        resultat = prix() * logement.getVendeur().getTauxCommission();
+        return resultat;
+    }
+
+
 }

@@ -11,6 +11,14 @@ public abstract class Piece {
 
     public abstract double surface();
 
+    public boolean isSurfaceHabitable(){
+        boolean resultat = true;
+        if(typePiece.isSurfaceHabitable() == false){
+            resultat = false;
+        }
+        return resultat;
+    }
+
     public TypePiece getTypePiece() {
         return typePiece;
     }
