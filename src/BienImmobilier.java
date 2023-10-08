@@ -6,6 +6,7 @@ public class BienImmobilier {
     private String ville;
     private String codePostal;
     private Vendeur  vendeur;
+    private Proprietaire proprietaire;
     protected ArrayList<Piece> pieces;
     private Annonce annonce;
 
@@ -15,7 +16,7 @@ public class BienImmobilier {
         this.ville = ville;
         this.codePostal = codePostal;
         this.vendeur = vendeur;
-        vendeur.ajouterBienImmobilierEnGestion(this);
+        vendeur.ajouterBienImmobilier(this);
         pieces = new ArrayList<Piece>();
     }
     public double surfaceHabitable(){
