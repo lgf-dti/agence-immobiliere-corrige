@@ -109,15 +109,15 @@ public class BienImmobilier {
         return resultat;
     }
 
-    public double dpe(double orientation, double menuiserie, double chauffage, double isolation) {
+    public double dpe() {
         double resultat = 0;
-        resultat = (consommationKWhAn() * orientation * menuiserie * chauffage * isolation) /100;
+        resultat = (consommationKWhAn() * dicOrientation.get(this.orientation) * dicMenuiserie.get(this.menuiserie) * dicChauffage.get(this.chauffage) * dicIsolation.get(this.isolation)) /100;
         return resultat;
     }
 
-    public String lettreDpe(double orientation, double menuiserie, double chauffage, double isolation) {
+    public String lettreDpe() {
         String lettre = "";
-        double dpe = dpe(orientation, menuiserie, chauffage, isolation);
+        double dpe = dpe();
         if (dpe <= 70) {
             lettre = "A";
         } else if (dpe > 70 && dpe <= 110) {
