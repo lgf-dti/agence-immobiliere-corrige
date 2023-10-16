@@ -1,5 +1,7 @@
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BienImmobilier {
     private String rue;
@@ -9,14 +11,46 @@ public class BienImmobilier {
     private Proprietaire proprietaire;
     protected ArrayList<Piece> pieces;
     private Annonce annonce;
+    private String orientation, menuiserie, chauffage, isolation;
 
+    public static Map<String, Double> dicOrientation;
+    public static Map<String, Double> dicMenuiserie;
+    public static Map<String, Double> dicChauffage;
+    public static Map<String, Double> dicIsolation;
+
+    static {
+        dicOrientation = new HashMap<>();
+        dicMenuiserie = new HashMap<>();
+        dicChauffage = new HashMap<>();
+        dicIsolation = new HashMap<>();
+
+        dicOrientation.put("Nord", 1.8);
+        dicOrientation.put("Sud", 1.0);
+        dicOrientation.put("Est", 1.2);
+        dicOrientation.put("Ouest", 1.4);
+
+        dicChauffage.put("Bois", 0.8);
+        dicChauffage.put("Géothermie", 0.6);
+        dicChauffage.put("Electrique", 1.0);
+        dicChauffage.put("Gaz", 0.9);
+
+        dicMenuiserie.put("Excellente", 1.0);
+        dicMenuiserie.put("Bonne", 1.1);
+        dicMenuiserie.put("Moyenne", 1.3);
+        dicMenuiserie.put("Mauvaise", 1.6);
+
+        dicIsolation.put("Excellente", 0.8);
+        dicIsolation.put("Bonne", 1.0);
+        dicIsolation.put("Moyenne", 1.4);
+        dicIsolation.put("Aucune", 2.0);
+    }
 
     public BienImmobilier(String rue, String ville, String codePostal, Vendeur vendeur) {
         this.rue = rue;
         this.ville = ville;
         this.codePostal = codePostal;
         this.vendeur = vendeur;
-        vendeur.ajouterBienImmobilier(this);
+        vendeur.ajouterBienImmobilier(this);;
         pieces = new ArrayList<Piece>();
     }
     public double surfaceHabitable(){
@@ -68,6 +102,52 @@ public class BienImmobilier {
         }
         return resultat;
     }
+
+    public double consommationKWhAn(){
+        double resultat = 0;
+        resultat = surfaceHabitable() * 110;
+        return resultat;
+    }
+
+    public double dpe(double orientation, double menuiserie, double chauffage, double isolation) {
+        double resultat = 0;
+        resultat = (consommationKWhAn() * orientation * menuiserie * chauffage * isolation) /100;
+        return resultat;
+    }
+
+    public String lettreDpe(double orientation, double menuiserie, double chauffage, double isolation) {
+        String lettre = "";
+        double dpe = dpe(orientation, menuiserie, chauffage, isolation);
+        if (dpe <= 70) {
+            lettre = "A";
+        } else if (dpe > 70 && dpe <= 110) {
+            lettre = "B";
+        } else if (dpe > 110 && dpe <= 180) {
+            lettre = "C";
+        } else if (dpe > 180 && dpe <= 250) {
+            lettre = "D";
+        } else if (dpe > 250 && dpe <= 330) {
+            lettre = "E";
+        } else if (dpe > 330 && dpe <= 420) {
+            lettre = "F";
+        } else if (dpe > 420) {
+            lettre = "G";
+        }
+        return lettre;
+    }
+
+    public void diagnosticDPE(String orientation, String menuiserie, String chauffage, String isolation) {
+        this.orientation = orientation;
+        this.menuiserie = menuiserie;
+        this.chauffage = chauffage;
+        this.isolation = isolation;
+
+    }
+
+
+
+
+
 
 
 

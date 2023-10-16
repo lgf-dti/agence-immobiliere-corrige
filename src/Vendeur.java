@@ -2,10 +2,11 @@ import java.util.ArrayList;
 
 public class Vendeur extends Personne {
     private double tauxCommission;
-    private ArrayList<BienImmobilier> biensImmobiliersEnGestion;
+
 
     public Vendeur(String nom, String prenom, String email, String numeroTelephone) {
         super(nom, prenom, email, numeroTelephone);
+        tauxCommission = 0.05;
     }
 
     public double getTauxCommission() {
@@ -14,7 +15,7 @@ public class Vendeur extends Personne {
 
     public double calculCommissions() {
         double resultat = 0;
-        for (BienImmobilier bienImmobilier : biensImmobiliersEnGestion) {
+        for (BienImmobilier bienImmobilier : super.getBiens()) {
             resultat += bienImmobilier.getAnnonce().commission();
         }
 

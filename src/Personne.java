@@ -31,5 +31,10 @@ public class Personne {
     public String getNumeroTelephone() {
         return numeroTelephone;
     }
+    public ArrayList<BienImmobilier> getBiens() {
+        return biens;
+    }
+
+
 
 }
