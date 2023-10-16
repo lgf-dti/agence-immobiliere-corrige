@@ -109,6 +109,10 @@ public class BienImmobilier {
         return resultat;
     }
 
+    /**
+     * Calculates the energy performance of the property using the DPE (Diagnostic de Performance Énergétique) formula.
+     * @return The DPE value of the property.
+     */
     public double dpe() {
         double resultat = 0;
         resultat = (consommationKWhAn() * dicOrientation.get(this.orientation) * dicMenuiserie.get(this.menuiserie) * dicChauffage.get(this.chauffage) * dicIsolation.get(this.isolation)) /100;
